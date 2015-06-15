@@ -33,7 +33,7 @@ def status_report():
 #Not sure this applies here but keeping just in case
 region = "us-east-1"
 #The profile to use in the credentials or boto.config file, if used
-profile_nm = 'svc_SysEngScript'
+profile_nm = 'pn'
 #The env var to look in for the AWS KEY, if used
 aws_key_env_var = 'AWS_KEY'
 #The env var to look in for the secret key, if used
@@ -54,10 +54,10 @@ else:
     #s3_conn = boto.connect_s3(profile_name=profile_nm)
 
 num_obj = 0
-bn = 'cfpb_s3_logs'
+bn = 'bn'
 bucket = s3_conn.get_bucket(bn)
-old_prefix = 'cfpb_sec_data_dump_bucket'
-new_prefix = 'cfpb_sec_data_dump_logs'
+old_prefix = 'p1'
+new_prefix = 'p2'
 exp_date_dict = {}
 #2012-03-17
 #trying this grammar/stuff to get only root stuff

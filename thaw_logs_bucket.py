@@ -8,8 +8,8 @@ import os
 import time
 
 
-dest_dict = {'cfpb_data_transfer':'cfpb_data_transfer_logs','cfpb_dev_config':'cfpb_dev_config_logs','cfpb_sec_data_dump':'cfpb_sec_data_dump_logs'}
-dest_count_dict = {'cfpb_data_transfer': 0,'cfpb_dev_config':0,'cfpb_sec_data_dump':0}
+dest_dict = {}
+dest_count_dict = {}
 exp_date_dict = {}
 num_obj = 0
 tot_scanned = 0
@@ -36,7 +36,7 @@ def move_key(key):
                 #print("Moving",nm,"to",dest_dict[ddkey]+'/'+nm)
                 #the preserve_acl causes an Access Denied error..not sure why
                 #key.copy(bn,dest_dict[ddkey]+'/'+nm,preserve_acl=True,validate_dst_bucket=True)
-                new_nm = re.sub('cfpb_sec_data_dump_bucket','',nm,)
+                new_nm = re.sub('fgjk','',nm,)
                 dest_nm = dest_dict[ddkey]+'/'+new_nm
                 bucket.copy_key(dest_nm,bn,nm,storage_class='STANDARD')
                 #key.copy(bn,dest_dict[ddkey]+'/'+nm,validate_dst_bucket=True)
@@ -69,7 +69,7 @@ def status_report():
 #Not sure this applies here but keeping just in case
 region = "us-east-1"
 #The profile to use in the credentials or boto.config file, if used
-profile_nm = 'svc_SysEngScript'
+profile_nm = 'pn'
 #The env var to look in for the AWS KEY, if used
 aws_key_env_var = 'AWS_KEY'
 #The env var to look in for the secret key, if used
@@ -89,13 +89,13 @@ else:
     s3_conn = boto.connect_s3(profile_name=profile_nm,calling_format=OrdinaryCallingFormat())
     #s3_conn = boto.connect_s3(profile_name=profile_nm)
 
-bn = 'cfpb_s3_logs'
+bn = 'bn'
 bucket = s3_conn.get_bucket(bn)
 #2012-03-17
 #trying this grammar/stuff to get only root stuff
 for key in bucket.list(prefix='',delimiter='/'):
 #for key in bucket.list(prefix='2014-03-'):
-#for key in bucket.list(prefix='cfpb_sec_data_dump_bucket2012-03-2'):
+#for key in bucket.list(prefix='gfgsd'):
     #need to set to the string representation, otherwise we're comparing objects
     nm = key.name
     tot_scanned += 1
